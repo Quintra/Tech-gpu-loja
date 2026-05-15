@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech GPU - Login</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section id="login-container">
+        <div class="login-box">
+            <div class="tech-gpu-header" style="border: none; text-align: center; padding: 0; margin-bottom: 20px;">
+                <span class="tech-tag">Bem vindo</span>
+                <h2 style="font-size: 2.2rem;">TECH <span class="highlight">GPU</span></h2>
+            </div>
+            
+            <h1>Acesso do Cliente</h1>
+            <p>Insira suas credenciais para continuar</p>
+        
+            <form action="catalogo.html">
+                <input type="text" placeholder="Usuário" required>
+                <input type="password" placeholder="Senha" required>
+                <button type="submit" class="btn-primary">Entrar no Sistema</button>
+
+            </form>
+            
+             <a href="caca.html" class="btn-voltar">Cadastrar novo usuário</a>
+
+             <button type="submit" class="btn-voltar" onclick="window.location.href='home.html'">Voltar</button>
+        </div>
+        <script>
+    document.querySelector('.os-form').onsubmit = function(e) {
+        e.preventDefault();
+        const inputs = this.querySelectorAll('input');
+        
+        const novoCliente = {
+            nome: inputs[0].value,
+            cpf: inputs[1].value,
+            telefone: inputs[2].value,
+            email: inputs[3].value,
+            senha: "123" // Senha padrão para o cliente logar na loja
+        };
+
+        let clientes = JSON.parse(localStorage.getItem('techGpuClientes')) || [];
+        clientes.push(novoCliente);
+        localStorage.setItem('techGpuClientes', JSON.stringify(clientes));
+
+        alert("Cliente cadastrado com sucesso!");
+        window.location.href = 'clientes.html';
+    };
+</script>
+<script>
+    document.querySelector('form').onsubmit = function(e) {
+        e.preventDefault();
+        const user = this.querySelectorAll('input')[0].value;
+        
+        const clientes = JSON.parse(localStorage.getItem('techGpuClientes')) || [];
+        const valid = clientes.find(c => c.nome === user || c.cpf === user);
+
+        if(valid) {
+            localStorage.setItem('clienteLogado', valid.nome);
+            window.location.href = 'catalogo.html';
+        } else {
+            alert("Cliente não encontrado! O técnico precisa te cadastrar primeiro.");
+        }
+    };
+</script>
+    </section>
+</body>
+</html>

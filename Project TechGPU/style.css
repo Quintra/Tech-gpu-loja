@@ -1,0 +1,366 @@
+/* Paleta de Cores Terrosas */
+:root {
+    --bg-body: #f4f1ee;
+    --bg-card: #ffffff;
+    --primary: #8c462e;    /* Terracota */
+    --secondary: #4a3728;  /* Marrom Profundo */
+    --accent: #bda27e;     /* Bege Ouro */
+    --text-dark: #2d241e;
+    --text-light: #6d5d51;
+    --success: #5a6344;    /* Verde Musgo */
+    --border: #e0d7cf;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: all 0.5s ease;
+}
+
+/* --- ESTILO TECH GPU HEADER --- */
+.tech-gpu-header {
+    border-left: 5px solid var(--primary);
+    padding-left: 15px;
+    text-align: left;
+}
+
+.tech-tag {
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.tech-gpu-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--secondary);
+    line-height: 1;
+}
+
+.tech-gpu-header .highlight {
+    color: var(--primary);
+    font-style: italic;
+}
+
+.tech-line {
+    width: 50px;
+    height: 4px;
+    background: var(--primary);
+    margin-top: 8px;
+}
+
+/* --- TELA DE LOGIN --- */
+.login-box {
+    background: var(--bg-card);
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(74, 55, 40, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+}
+
+.login-box h1 { margin-bottom: 10px; color: var(--secondary); }
+.login-box p { color: var(--text-light); margin-bottom: 30px; font-size: 14px; }
+
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    background: #faf9f8;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus, textarea:focus { border-color: var(--primary); }
+
+.btn-primary {
+    width: 100%;
+    padding: 15px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+
+}
+
+.btn-voltar {
+    width: 100%;
+    
+    padding: 8px;
+    background: var(--secondary); /* Marrom profundo para diferenciar do principal */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
+    margin: 3px
+    
+}
+
+.btn-voltar:hover {
+    filter: brightness(1.5); 
+    transform: translateY(-2px);       /* Pequeno efeito de levante */
+    transform: scale(1.02);
+}
+
+.btn-primary:hover { 
+ 
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+    transform: scale(1.02);
+}
+
+.login-box form {
+    margin-bottom: 8px; /* Separa o formulário dos links abaixo */
+}
+
+/* Transforma o link de cadastro em algo com margem própria */
+.link-secundario {
+    display: block;
+    margin: 10px ; /* Cria espaço em cima e embaixo */
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.link-secundario:hover {
+    color: var(--primary);
+}
+
+/* --- DASHBOARD --- */
+#dashboard {
+    width: 95%;
+    max-width: 1100px;
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between; /* Mantém logo na esquerda e user-info na direita */
+    align-items: flex-start;        /* Alinha pelo topo */
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.menu-botoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.card-sair {
+    
+    padding: 3px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--secondary);
+    transition: 0.3s;
+    text-align:left
+
+}
+
+.card-btn {
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--secondary);
+    transition: 0.3s;
+}
+
+.card-btn:hover { background: var(--accent); color: white; }
+.active { background: var(--primary) !important; color: white !important; }
+.disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* --- FORMULÁRIO OS --- */
+.os-container {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    border: 1px solid var(--border);
+}
+
+.os-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+}
+
+.os-number {
+    background: #eeeae6;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-row { display: flex; gap: 20px; }
+.form-group { flex: 1; display: flex; flex-direction: column; margin-bottom: 20px; }
+label { font-weight: 700; margin-bottom: 8px; font-size: 14px; color: var(--secondary); }
+textarea { height: 120px; resize: none; }
+
+.btn-success {
+    background: var(--success);
+    color: white;
+    padding: 18px 40px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(90, 99, 68, 0.3);
+}
+
+.btn-success:hover { filter: brightness(1.1); transform: scale(1.02); }
+
+/* Garante que os links no menu pareçam botões */
+.menu-botoes a {
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilo básico para tabelas nas novas páginas */
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.tech-table th {
+    text-align: left;
+    padding: 15px;
+    background: var(--secondary);
+    color: white;
+}
+.tech-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;    /* Empilha texto e botão */
+    align-items: flex-end;     /* Alinha os itens à DIREITA do bloco */
+    text-align: right;         /* Alinha o texto interno à direita */
+}
+
+.user-info button {
+    width: fit-content;
+    padding: 5px 15px;
+    cursor: pointer;
+    margin-top: 5px;           /* Espaço entre o nome e o botão */
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.user-info button:hover {
+    background: var(--primary);
+    color: white;
+}
+.main-header {
+    display: flex;
+    justify-content: space-between; /* Empurra os blocos para as extremidades */
+    align-items: right;            /* Alinha verticalmente a logo com o texto */
+    width: 100%;                    /* Garante que o header ocupe a largura toda */
+    padding: 0 20px;                /* Um pequeno respiro nas laterais */
+}
+/* --- ÁREA DE PESQUISA CLIENTES --- */
+.search-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.search-container input {
+    margin-bottom: 0; /* Remove a margem padrão para alinhar com o botão */
+    flex: 1;
+}
+
+.btn-new {
+    width: auto;
+    padding: 13px 25px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.btn-new:hover {
+    background: var(--secondary);
+}
+
+.status-tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-tag.ativo { background: #e8f5e9; color: #2e7d32; }
+.status-tag.inativo { background: #ffebee; color: #c62828; }
+
+.cart-sidebar {
+    position: fixed;
+    right: -350px; /* Escondido */
+    top: 0;
+    width: 350px;
+    height: 100%;
+    background: var(--bg-card);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: 0.4s;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.cart-sidebar.open { right: 0; }
+.cart-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
+.cart-items { flex: 1; overflow-y: auto; padding: 15px 0; }
+.cart-footer { border-top: 1px solid var(--border); padding-top: 15px; }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Tech GPU - Cadastro de Equipe</title>
+</head>
+<body>
+    <section id="login-container">
+        <div class="login-box">
+            <h1>Cadastrar Técnico</h1>
+            <p>Crie o acesso para a equipe interna</p>
+            <form id="form-equipe">
+                <input type="text" id="user-equipe" placeholder="Nome de Usuário" required>
+                <input type="password" id="pass-equipe" placeholder="Senha" required>
+                <button type="submit" class="btn-primary">Cadastrar Técnico</button>
+            </form>
+            <a href="login.html" class="btn-new" style="display: block; margin-top: 10px;">Voltar para Login</a>
+        </div>
+    </section>
+
+    <script>
+        document.getElementById('form-equipe').onsubmit = function(e) {
+            e.preventDefault();
+            const user = document.getElementById('user-equipe').value;
+            const pass = document.getElementById('pass-equipe').value;
+
+            let equipe = JSON.parse(localStorage.getItem('techGpuEquipe')) || [];
+            equipe.push({ user, pass });
+            localStorage.setItem('techGpuEquipe', JSON.stringify(equipe));
+
+            alert("Técnico cadastrado com sucesso!");
+            window.location.href = 'login.html';
+        };
+    </script>
+</body>
+</html>

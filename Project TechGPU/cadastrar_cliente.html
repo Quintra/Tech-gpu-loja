@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech GPU - Cadastrar Cliente</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body style="align-items: flex-start; padding-top: 40px;">
+    <main id="dashboard">
+        <header class="main-header">
+            <div class="tech-gpu-header">
+                <span class="tech-tag">CRM / VENDAS</span>
+                <h2>NOVO <span class="highlight">CLIENTE</span></h2>
+                <div class="tech-line"></div>
+            </div>
+            <div class="user-info">
+                <span>Bem-vindo, <strong>Atendente</strong></span>
+                <button onclick="window.location.href='login.html'">Sair</button>
+            </div>
+        </header>
+
+        <nav class="menu-botoes">
+            <a href="clientes.html" class="card-btn active">🔍 Pesquisar Clientes</a>
+            <a href="funcionarios.html" class="card-btn">👥 Funcionários</a>
+            <a href="index.html" class="card-btn">🛠️ Nova Ordem de Serviço</a>
+            <a href="relatorios.html" class="card-btn">📊 Relatórios</a>
+        </nav>
+
+        <section class="os-container">
+            <div class="os-header-flex">
+                <h3>Formulário de Cadastro</h3>
+                <p style="font-size: 13px; color: var(--text-light);">Preencha os dados básicos para faturamento e O.S.</p>
+            </div>
+
+            <form class="os-form" action="clientes.html">
+                <div class="form-group">
+                    <label>Nome Completo ou Razão Social</label>
+                    <input type="text" placeholder="Ex: João Silva ou Tech LTDA" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CPF ou CNPJ</label>
+                        <input type="text" placeholder="000.000.000-00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone / WhatsApp</label>
+                        <input type="tel" placeholder="(00) 00000-0000" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input type="email" placeholder="cliente@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label>Endereço Completo</label>
+                    <textarea placeholder="Rua, Número, Bairro, Cidade - UF" style="height: 80px;"></textarea>
+                </div>
+
+                <div class="form-actions" style="display: flex; gap: 15px; justify-content: flex-end;">
+                    <button type="button" class="btn-primary" style="background: var(--secondary); width: auto;" onclick="history.back()">Cancelar</button>
+                    <button type="submit" class="btn-success">Salvar Cadastro</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

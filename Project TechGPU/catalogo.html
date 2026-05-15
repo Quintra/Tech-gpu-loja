@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech GPU - Catálogo</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Janela Modal de Checkout */
+        .modal-checkout {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--bg-body);
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 850px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .method-btn {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            background: white;
+            font-weight: bold;
+        }
+
+        .method-btn.active {
+            border-color: var(--primary);
+            background: #fff5f2;
+            color: var(--primary);
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body style="align-items: flex-start; padding-top: 40px;">
+
+    <main id="dashboard">
+        <header class="main-header">
+            <div class="tech-gpu-header">
+                <span class="tech-tag">LOJA OFICIAL</span>
+                <h2>CATÁLOGO DE <span class="highlight">PLACAS</span></h2>
+            </div>
+            <div class="user-info">
+                <button class="cart-toggle" onclick="toggleCart()">🛒 Carrinho (<span id="cart-count">0</span>)</button>
+                <button onclick="window.location.href='index.html'">Voltar</button>
+            </div>
+        </header>
+
+        <section class="os-container">
+            <div class="grid-produtos">
+                <div class="produto-card">
+                    <div class="produto-img"><img src="img/3060ti.png" alt="RTX 3060 Ti"></div>
+                    <h3>RTX 3060 Ti</h3>
+                    <p style="font-size: 12px; color: var(--text-light);">Revisada com Garantia</p>
+                    <span class="preco">R$ 1.850,00</span>
+                    <button class="btn-comprar" onclick="addToCart('RTX 3060 Ti', 1850)">🛒 Adicionar</button>
+                </div>
+
+                <div class="produto-card">
+                    <div class="produto-img"><img src="img/6700xt.png" alt="RX 6700 XT"></div>
+                    <h3>RX 6700 XT</h3>
+                    <p style="font-size: 12px; color: var(--text-light);">Novo / OEM</p>
+                    <span class="preco">R$ 2.100,00</span>
+                    <button class="btn-comprar" onclick="addToCart('RX 6700 XT', 2100)">🛒 Adicionar</button>
+                </div>
+
+                <div class="produto-card">
+                    <div class="produto-img"><img src="img/4070msi.png" alt="RTX 4070 MSI"></div>
+                    <h3>RTX 4070 MSI</h3>
+                    <p style="font-size: 12px; color: var(--text-light);">Lacrada - 1 ano garantia</p>
+                    <span class="preco">R$ 4.200,00</span>
+                    <button class="btn-comprar" onclick="addToCart('RTX 4070 MSI', 4200)">🛒 Adicionar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="cart-sidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Seu Carrinho</h3>
+            <button onclick="toggleCart()">✕</button>
+        </div>
+        <div id="cart-items" class="cart-items" style="padding: 15px 0;"></div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: <strong id="total-price">R$ 0,00</strong></div>
+            <button class="btn-success" style="width: 100%; margin-top: 10px;" onclick="abrirCheckout()">Finalizar Compra</button>
+        </div>
+    </div>
+
+    <div id="modalCheckout" class="modal-checkout">
+        <div class="modal-content">
+            <span class="close-modal" onclick="fecharCheckout()">✕</span>
+            <h2>Finalizar Pagamento</h2>
+            
+            <div class="checkout-grid">
+                <div>
+                    <h4>Forma de Pagamento</h4>
+                    <div style="display:flex; gap:10px; margin: 15px 0;">
+                        <button id="btn-cartao" class="method-btn active" onclick="setMetodo('cartao')">💳 Cartão</button>
+                        <button id="btn-pix" class="method-btn" onclick="setMetodo('pix')">📱 Pix (-5%)</button>
+                    </div>
+
+                    <div id="checkout-form">
+                        <input type="text" placeholder="Número do Cartão" style="width:100%; padding:12px; margin-bottom:10px;">
+                        <select id="parcelas" style="width:100%; padding:12px;"></select>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 12px; border: 1px solid var(--border);">
+                    <h4>Resumo</h4>
+                    <div id="resumo-lista" style="font-size: 13px; margin: 15px 0;"></div>
+<div style="font-size: 18px; border-top: 1px solid #eee; padding-top: 10px;">
+                        Total: <strong id="total-final" style="color:var(--primary)">R$ 0,00</strong>
+                    </div>
+                    <button class="btn-success" style="width:100%; margin-top:15px;" onclick="finalizarPedido()">Pagar Agora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('open');
+        }
+
+        function addToCart(nome, preco) {
+            cart.push({ nome, preco });
+            updateCartUI();
+            if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const list = document.getElementById('cart-items');
+            const count = document.getElementById('cart-count');
+            const totalEl = document.getElementById('total-price');
+            
+            count.innerText = cart.length;
+            list.innerHTML = "";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.preco;
+                list.innerHTML += `
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; border-bottom:1px solid var(--border); padding-bottom:5px;">
+                        <div>
+                            <span style="display:block; font-size:14px;">${item.nome}</span>
+                            <strong style="color:var(--primary);">R$ ${item.preco.toFixed(2)}</strong>
+                        </div>
+                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:var(--primary); cursor:pointer; font-weight:bold;">✕</button>
+                    </div>`;
+            });
+
+            if(cart.length === 0) list.innerHTML = "<p style='text-align:center;'>Carrinho vazio</p>";
+            totalEl.innerText = `R$ ${total.toFixed(2)}`;
+        }
+
+        // FUNÇÕES DO MODAL
+        function abrirCheckout() {
+            if(cart.length === 0) return alert("Adicione itens ao carrinho!");
+            document.getElementById('modalCheckout').style.display = "flex";
+            toggleCart();
+            renderResumo();
+        }
+
+        function fecharCheckout() {
+            document.getElementById('modalCheckout').style.display = "none";
+        }
+
+        function renderResumo() {
+            let total = cart.reduce((a, b) => a + b.preco, 0);
+            document.getElementById('resumo-lista').innerHTML = cart.map(i => `<div>${i.nome} - R$ ${i.preco.toFixed(2)}</div>`).join('');
+            setMetodo('cartao'); // Reset para cartão ao abrir
+        }
+
+        function setMetodo(tipo) {
+            let total = cart.reduce((a, b) => a + b.preco, 0);
+            const btnPix = document.getElementById('btn-pix');
+            const btnCartao = document.getElementById('btn-cartao');
+            const form = document.getElementById('checkout-form');
+
+            if(tipo === 'pix') {
+                total *= 0.95;
+                btnPix.classList.add('active');
+                btnCartao.classList.remove('active');
+                form.innerHTML = "<p style='text-align:center;'>QR Code será gerado após confirmar.</p>";
+            } else {
+                btnCartao.classList.add('active');
+                btnPix.classList.remove('active');
+                form.innerHTML = `<input type="text" placeholder="Número do Cartão" style="width:100%; padding:12px; margin-bottom:10px;">
+                                 <select id="parcelas" style="width:100%; padding:12px;"></select>`;
+                
+                const sel = document.getElementById('parcelas');
+                for(let i=1; i<=12; i++) {
+                    sel.innerHTML += `<option>${i}x de R$ ${(total/i).toFixed(2)}</option>`;
+                }
+            }
+            document.getElementById('total-final').innerText = `R$ ${total.toFixed(2)}`;
+        }
+
+        function finalizarPedido() {
+            alert("Sucesso! Sua Compra foi Realizada e seu cartao CLONADO HAHAHAHA.");
+            cart = [];
+            updateCartUI();
+            fecharCheckout();
+        }
+    </script>
+    <script>
+        // Adicione esta verificação dentro da função abrirCheckout()
+function abrirCheckout() {
+    const clienteLogado = localStorage.getItem('clienteLogado');
+
+    if (!clienteLogado) {
+        alert("Para comprar, você precisa fazer login como cliente!");
+        window.location.href = 'login_clientes.html';
+        return;
+    }
+
+    if(cart.length === 0) return alert("Adicione itens ao carrinho!");
+    document.getElementById('modalCheckout').style.display = "flex";
+    renderResumo();
+}
+    </script>
+
+</body>
+</html>
