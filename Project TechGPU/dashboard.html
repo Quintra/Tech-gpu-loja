@@ -19,7 +19,7 @@
 
     <div class="user-info">
         <span>Bem-vindo, <strong>Técnico</strong></span>
-        <button onclick="window.location.href='login.html'">Sair</button>
+        <button onclick="window.location.href='index.html'">Sair</button>
     </div>
     </header>
 
@@ -63,7 +63,24 @@
     </main>
 
     <script>
-        // Caso queira adicionar lógica extra no futuro, a função já está engatilhada no onsubmit
-    </script>
+    // Se o usuário tentar acessar direto sem logar, joga de volta para o login
+    const logado = localStorage.getItem('loginAtivo');
+    if (!logado) {
+        window.location.href = 'login.html';
+    } else {
+        // Coloca o nome de quem logou no lugar do texto "Técnico"
+        const txtNome = document.querySelector('.user-info strong');
+        if (txtNome) txtNome.innerText = logado;
+    }
+
+    // Configura o botão Sair
+    const btnSair = document.querySelector('.user-info button');
+    if (btnSair) {
+        btnSair.onclick = function() {
+            localStorage.removeItem('loginAtivo');
+            window.location.href = 'index.html';
+        };
+    }
+</script>
 </body>
 </html>

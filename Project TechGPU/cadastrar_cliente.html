@@ -68,5 +68,33 @@
             </form>
         </section>
     </main>
+<script>
+    const logado = localStorage.getItem('loginAtivo');
+    if(logado) document.getElementById('user-atendente').innerText = logado;
+
+    // CORREÇÃO: Captura pela classe .os-form que está no seu HTML
+    document.querySelector('.os-form').onsubmit = function(e) {
+        e.preventDefault();
+        const inputs = this.querySelectorAll('input');
+        
+        const novo = {
+            nome: inputs[0].value,
+            cpf: inputs[1].value,
+            tel: inputs[2].value,
+            email: inputs[3].value
+        };
+
+        // Guarda na lista geral de clientes do sistema
+        let lista = JSON.parse(localStorage.getItem('techGpuClientes')) || [];
+        lista.push(novo);
+        localStorage.setItem('techGpuClientes', JSON.stringify(lista));
+
+        // Define a sessão ativa para o catálogo permitir a compra imediata
+        localStorage.setItem('clienteLogado', novo.nome);
+
+        alert("Cliente cadastrado com sucesso! Redirecionando para o catálogo...");
+        window.location.href = 'catalogo.html'; // Redireciona para concluir a compra
+    };
+    </script>
 </body>
 </html>

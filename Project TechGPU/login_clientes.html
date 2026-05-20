@@ -27,47 +27,30 @@
 
             </form>
             
-             <a href="caca.html" class="btn-voltar">Cadastrar novo usuário</a>
+             <a href="cadastrar.html" class="btn-voltar">Cadastrar novo usuário</a>
 
-             <button type="submit" class="btn-voltar" onclick="window.location.href='home.html'">Voltar</button>
+             <button type="submit" class="btn-voltar" onclick="window.location.href='index.html'">Voltar</button>
         </div>
         <script>
-    document.querySelector('.os-form').onsubmit = function(e) {
-        e.preventDefault();
-        const inputs = this.querySelectorAll('input');
-        
-        const novoCliente = {
-            nome: inputs[0].value,
-            cpf: inputs[1].value,
-            telefone: inputs[2].value,
-            email: inputs[3].value,
-            senha: "123" // Senha padrão para o cliente logar na loja
-        };
-
-        let clientes = JSON.parse(localStorage.getItem('techGpuClientes')) || [];
-        clientes.push(novoCliente);
-        localStorage.setItem('techGpuClientes', JSON.stringify(clientes));
-
-        alert("Cliente cadastrado com sucesso!");
-        window.location.href = 'clientes.html';
-    };
-</script>
-<script>
     document.querySelector('form').onsubmit = function(e) {
         e.preventDefault();
         const user = this.querySelectorAll('input')[0].value;
         
+        // Procura se o cliente já existe no sistema
         const clientes = JSON.parse(localStorage.getItem('techGpuClientes')) || [];
         const valid = clientes.find(c => c.nome === user || c.cpf === user);
 
         if(valid) {
+            // Se existir, faz login com o nome guardado
             localStorage.setItem('clienteLogado', valid.nome);
             window.location.href = 'catalogo.html';
         } else {
-            alert("Cliente não encontrado! O técnico precisa te cadastrar primeiro.");
+            // Se não existir, permite o login direto com o nome digitado para facilitar o teste
+            localStorage.setItem('clienteLogado', user);
+            window.location.href = 'catalogo.html';
         }
     };
-</script>
+    </script>
     </section>
 </body>
 </html>

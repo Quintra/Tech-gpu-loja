@@ -37,275 +37,283 @@ body {
 
 .tech-tag {
     font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--accent);
-    font-weight: 800;
+    letter-spacing: 2px;
     text-transform: uppercase;
-}
-
-.tech-gpu-header h2 {
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--secondary);
-    line-height: 1;
-}
-
-.tech-gpu-header .highlight {
     color: var(--primary);
-    font-style: italic;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 5px;
 }
 
 .tech-line {
-    width: 50px;
+    width: 60px;
     height: 4px;
-    background: var(--primary);
-    margin-top: 8px;
+    background-color: var(--primary);
+    margin-top: 10px;
 }
 
-/* --- TELA DE LOGIN --- */
-.login-box {
-    background: var(--bg-card);
-    padding: 50px;
-    border-radius: 20px;
-    box-shadow: 0 20px 40px rgba(74, 55, 40, 0.1);
-    width: 100%;
-    max-width: 450px;
-    text-align: center;
-}
-
-.login-box h1 { margin-bottom: 10px; color: var(--secondary); }
-.login-box p { color: var(--text-light); margin-bottom: 30px; font-size: 14px; }
-
-input, textarea {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 15px;
-    border: 1.5px solid var(--border);
-    border-radius: 8px;
-    background: #faf9f8;
-    font-size: 15px;
-    outline: none;
-}
-
-input:focus, textarea:focus { border-color: var(--primary); }
-
-.btn-primary {
-    width: 100%;
-    padding: 15px;
-    background: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-
-}
-
-.btn-voltar {
-    width: 100%;
-    
-    padding: 8px;
-    background: var(--secondary); /* Marrom profundo para diferenciar do principal */
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: 700;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-block;
-    transition: 0.3s;
-    margin: 3px
-    
-}
-
-.btn-voltar:hover {
-    filter: brightness(1.5); 
-    transform: translateY(-2px);       /* Pequeno efeito de levante */
-    transform: scale(1.02);
-}
-
-.btn-primary:hover { 
- 
-    transform: translateY(-2px);
-    filter: brightness(1.2);
-    transform: scale(1.02);
-}
-
-.login-box form {
-    margin-bottom: 8px; /* Separa o formulário dos links abaixo */
-}
-
-/* Transforma o link de cadastro em algo com margem própria */
-.link-secundario {
-    display: block;
-    margin: 10px ; /* Cria espaço em cima e embaixo */
-    color: var(--text-light);
-    text-decoration: none;
-    font-size: 10px;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.link-secundario:hover {
+.highlight {
     color: var(--primary);
 }
 
-/* --- DASHBOARD --- */
-#dashboard {
-    width: 95%;
-    max-width: 1100px;
-    animation: fadeIn 0.6s ease;
+/* --- LOGIN CONTAINER --- */
+#login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+.login-box {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(74, 55, 40, 0.08);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.login-box h1 {
+    font-size: 24px;
+    color: var(--secondary);
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+
+.login-box p {
+    color: var(--text-light);
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background-color: #faf9f8;
+    color: var(--text-dark);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(140, 70, 46, 0.1);
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: var(--primary);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: var(--secondary);
+    transform: translateY(-1px);
+}
+
+.btn-voltar {
+    display: block;
+    margin-top: 20px;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.3s;
+}
+
+.btn-voltar:hover {
+    color: var(--primary);
+}
+
+/* --- DASHBOARD PRINCIPAL --- */
+#dashboard {
+    width: 100%;
+    max-width: 1200px;
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(74, 55, 40, 0.05);
+    border: 1px solid var(--border);
+    margin: 20px;
 }
 
 .main-header {
     display: flex;
-    justify-content: space-between; /* Mantém logo na esquerda e user-info na direita */
-    align-items: flex-start;        /* Alinha pelo topo */
-    width: 100%;
-    margin-bottom: 40px;
-}
-
-.menu-botoes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
-.card-sair {
-    
-    padding: 3px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--secondary);
-    transition: 0.3s;
-    text-align:left
-
-}
-
-.card-btn {
-    padding: 20px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    cursor: pointer;
-    font-weight: 600;
-    color: var(--secondary);
-    transition: 0.3s;
-}
-
-.card-btn:hover { background: var(--accent); color: white; }
-.active { background: var(--primary) !important; color: white !important; }
-.disabled { opacity: 0.5; cursor: not-allowed; }
-
-/* --- FORMULÁRIO OS --- */
-.os-container {
-    background: var(--white);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-    border: 1px solid var(--border);
-}
-
-.os-header-flex {
-    display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 25px;
     margin-bottom: 30px;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 15px;
-}
-
-.os-number {
-    background: #eeeae6;
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-}
-
-.form-row { display: flex; gap: 20px; }
-.form-group { flex: 1; display: flex; flex-direction: column; margin-bottom: 20px; }
-label { font-weight: 700; margin-bottom: 8px; font-size: 14px; color: var(--secondary); }
-textarea { height: 120px; resize: none; }
-
-.btn-success {
-    background: var(--success);
-    color: white;
-    padding: 18px 40px;
-    border: none;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 4px 14px rgba(90, 99, 68, 0.3);
-}
-
-.btn-success:hover { filter: brightness(1.1); transform: scale(1.02); }
-
-/* Garante que os links no menu pareçam botões */
-.menu-botoes a {
-    text-decoration: none;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Estilo básico para tabelas nas novas páginas */
-.tech-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-.tech-table th {
-    text-align: left;
-    padding: 15px;
-    background: var(--secondary);
-    color: white;
-}
-.tech-table td {
-    padding: 12px;
-    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .user-info {
     display: flex;
-    flex-direction: column;    /* Empilha texto e botão */
-    align-items: flex-end;     /* Alinha os itens à DIREITA do bloco */
-    text-align: right;         /* Alinha o texto interno à direita */
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info span {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.user-info strong {
+    color: var(--secondary);
 }
 
 .user-info button {
-    width: fit-content;
-    padding: 5px 15px;
-    cursor: pointer;
-    margin-top: 5px;           /* Espaço entre o nome e o botão */
-    background: var(--bg-card);
+    padding: 8px 16px;
+    background: none;
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 8px;
+    color: var(--text-light);
+    cursor: pointer;
+    font-weight: 600;
     transition: 0.3s;
 }
 
 .user-info button:hover {
+    background: #ffebee;
+    color: #c62828;
+    border-color: #ffcdd2;
+}
+
+/* Menu de Navegação por Botões Interativos */
+.menu-botoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.card-btn {
+    background: #faf9f8;
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+
+.card-btn:hover {
+    background: #ffffff;
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(140, 70, 46, 0.08);
+}
+
+.card-btn.active {
     background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 8px 16px rgba(140, 70, 46, 0.15);
+}
+
+/* Seções de Conteúdo Interno */
+.os-container {
+    background: #faf9f8;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.os-container h3 {
+    font-size: 18px;
+    color: var(--secondary);
+    margin-bottom: 25px;
+    font-weight: 800;
+}
+
+.os-form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.btn-success {
+    background: var(--success);
     color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
 }
-.main-header {
-    display: flex;
-    justify-content: space-between; /* Empurra os blocos para as extremidades */
-    align-items: right;            /* Alinha verticalmente a logo com o texto */
-    width: 100%;                    /* Garante que o header ocupe a largura toda */
-    padding: 0 20px;                /* Um pequeno respiro nas laterais */
+
+.btn-success:hover {
+    filter: brightness(1.1);
 }
+
+/* --- TABELAS --- */
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.tech-table th {
+    background: var(--secondary);
+    color: white;
+    text-align: left;
+    padding: 14px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.tech-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.tech-table tr:last-child td {
+    border-bottom: none;
+}
+
+.tech-table tr:hover td {
+    background: #faf9f8;
+}
+
 /* --- ÁREA DE PESQUISA CLIENTES --- */
 .search-container {
     display: flex;
@@ -315,7 +323,7 @@ textarea { height: 120px; resize: none; }
 }
 
 .search-container input {
-    margin-bottom: 0; /* Remove a margem padrão para alinhar com o botão */
+    margin-bottom: 0;
     flex: 1;
 }
 
@@ -346,21 +354,134 @@ textarea { height: 120px; resize: none; }
 .status-tag.ativo { background: #e8f5e9; color: #2e7d32; }
 .status-tag.inativo { background: #ffebee; color: #c62828; }
 
-.cart-sidebar {
-    position: fixed;
-    right: -350px; /* Escondido */
-    top: 0;
-    width: 350px;
-    height: 100%;
+
+/* ==========================================================================
+   CORREÇÃO DEFINITIVA DO CATÁLOGO (CONFORME O PRINT)
+   ========================================================================== */
+
+/* ATENÇÃO: Mudamos para .grid-produtos para bater exatamente com o seu HTML */
+.grid-produtos {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* Força exatamente 3 colunas lado a lado */
+    gap: 20px !important; /* Espaçamento idêntico ao do seu print */
+    padding: 10px 0;
+    width: 100%;
+}
+
+/* Controla o design individual dos cartões de produtos */
+.produto-card {
     background: var(--bg-card);
-    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-    transition: 0.4s;
-    z-index: 1000;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    align-items: center; /* Centraliza os textos e botões */
+    justify-content: space-between;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
-.cart-sidebar.open { right: 0; }
-.cart-header { display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 15px; }
-.cart-items { flex: 1; overflow-y: auto; padding: 15px 0; }
-.cart-footer { border-top: 1px solid var(--border); padding-top: 15px; }
+
+.produto-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+/* Enquadra a área da foto de cada GPU */
+.produto-img {
+    width: 100%;
+    height: 180px;
+    background: #eae4de; /* Cor de fundo levemente terrosa para destacar o container enquanto não há foto */
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.produto-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ajusta a imagem sem distorcer nem esticar */
+    width: auto;
+    height: auto;
+}
+
+/* Estilização dos títulos e preços para seguir o padrão visual */
+.produto-card h3 {
+    font-size: 1.3rem;
+    color: var(--secondary);
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+
+.preco {
+    font-size: 1.5rem;
+    color: var(--secondary);
+    font-weight: 800;
+    margin: 15px 0;
+    display: block;
+}
+
+.btn-comprar {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn-comprar:hover {
+    background: var(--secondary);
+}
+
+/* --- CARRINHO SIDEBAR --- */
+.cart-sidebar {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    background: var(--bg-card);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 1500;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+/* --- ALINHAMENTO DO TOPO DO CARRINHO --- */
+.cart-header {
+    display: flex;
+    justify-content: space-between; /* Empurra o título para a esquerda e o X para a direita */
+    align-items: center;            /* Alinha os dois verticalmente ao centro */
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+/* Estilo opcional para deixar o botão X mais bonito e limpo no canto */
+.cart-header button {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.2s;
+}
+
+.cart-header button:hover {
+    color: var(--secondary);
+}

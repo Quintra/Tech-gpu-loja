@@ -3,49 +3,49 @@
 <head>
     <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
-    <title>Tech GPU - Login Interno</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech GPU - Login</title>
 </head>
 <body>
     <section id="login-container">
         <div class="login-box">
-            <div class="tech-gpu-header" style="border: none; text-align: center; margin-bottom: 20px;">
-                <span class="tech-tag">ACESSO RESTRITO</span>
-                <h2>TECH <span class="highlight">GPU</span></h2>
+            <div class="tech-gpu-header" style="border: none; text-align: center; padding: 0; margin-bottom: 20px;">
+                <span class="tech-tag">RESTRICTED ACCESS</span>
+                <h2 style="font-size: 2.2rem;">TECH <span class="highlight">GPU</span></h2>
             </div>
+            
+            <h1>Acesso Interno</h1>
+            <p>Insira suas credenciais para continuar</p>
+            
             <form id="login-form">
-                <input type="text" id="user" placeholder="Usuário" required>
-                <input type="password" id="pass" placeholder="Senha" required>
+                <input type="text" placeholder="Usuário" required>
+                <input type="password" placeholder="Senha" required>
                 <button type="submit" class="btn-primary">Entrar no Sistema</button>
             </form>
-            <a href="caca.html" class="btn-voltar" style="display:block; margin-top:15px; text-decoration:none; text-align:center;">Cadastrar Novo Técnico</a>
+            
+            <a href="caca.html" class="btn-voltar">Cadastrar novo usuário</a>
         </div>
     </section>
 
-<form id="login-form">
-    <input type="text" id="user" placeholder="Usuário" required>
-    <input type="password" id="pass" placeholder="Senha" required>
-    <button type="submit" class="btn-primary">Entrar no Sistema</button>
-</form>
+    <script>
+        document.getElementById('login-form').onsubmit = function(e) {
+            e.preventDefault();
+            const inputs = this.querySelectorAll('input');
+            const userIn = inputs[0].value;
+            const passIn = inputs[1].value;
 
-<script>
-    document.querySelector('form').onsubmit = function(e) {
-        e.preventDefault();
-        const inputs = this.querySelectorAll('input');
-        const userIn = inputs[0].value;
-        const passIn = inputs[1].value;
+            // Recupera a lista de técnicos do navegador (localStorage)
+            const equipe = JSON.parse(localStorage.getItem('techGpuEquipe')) || [];
+            const tecnico = equipe.find(t => t.user === userIn && t.pass === passIn);
 
-        // Recupera técnicos cadastrados no caca.html
-        const equipe = JSON.parse(localStorage.getItem('techGpuEquipe')) || [];
-        const tecnico = equipe.find(t => t.user === userIn && t.pass === passIn);
-
-        // Permite entrar se for o admin padrão ou um técnico da lista
-        if (tecnico || (userIn === "admin" && passIn === "123")) {
-            localStorage.setItem('loginAtivo', userIn);
-            window.location.href = 'dashboard.html';
-        } else {
-            alert("Usuário ou senha incorretos!");
-        }
-    };
-</script>
+            // Conta padrão (admin/123) ou qualquer técnico cadastrado no caca.html
+            if (tecnico || (userIn === "admin" && passIn === "123")) {
+                localStorage.setItem('loginAtivo', userIn);
+                window.location.href = 'dashboard.html';
+            } else {
+                alert("Usuário ou senha incorretos!");
+            }
+        };
+    </script>
 </body>
 </html>
