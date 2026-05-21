@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech GPU - Nova OS</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body style="align-items: flex-start; padding-top: 40px;"> 
+    <main id="dashboard">
+<header class="main-header">
+    <div class="tech-gpu-header">
+        <span class="tech-tag">SISTEMA DE DIAGNÓSTICO</span>
+        <h2>TECH <span class="highlight">GPU</span></h2>
+        <div class="tech-line"></div>
+    </div>
+
+    <div class="user-info">
+        <span>Bem-vindo, <strong>Técnico</strong></span>
+        <button onclick="window.location.href='index.html'">Sair</button>
+    </div>
+    </header>
+
+
+
+        <nav class="menu-botoes">
+            <a href="clientes.html" class="card-btn">🔍 Pesquisar Clientes</a>
+            <a href="funcionarios.html" class="card-btn">👥 Funcionários</a>
+            <a href="dashboard.html" class="card-btn active">🛠️ Nova Ordem de Serviço</a>
+            <a href="relatorios.html" class="card-btn">📊 Relatórios</a>
+        </nav>
+
+        <section class="os-container">
+            <div class="os-header-flex">
+                <h3>Abertura de Ordem de Serviço</h3>
+                <span class="os-number">Nº OS: <strong>#2026-0842</strong></span>
+            </div>
+
+            <form class="os-form" onsubmit="event.preventDefault(); window.print();">
+                <div class="form-group">
+                    <label>Vincular Cliente</label>
+                    <input type="text" placeholder="Nome, CPF ou E-mail do cliente..." required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Análise Técnica (Defeito Reclamado)</label>
+                        <textarea placeholder="Ex: Artefatos na tela, não liga..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Descrição do Hardware</label>
+                        <textarea placeholder="Ex: RTX 3080 MSI Gaming X Trio..." required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-success">✅ Gerar e Imprimir O.S.</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script>
+    // Se o usuário tentar acessar direto sem logar, joga de volta para o login
+    const logado = localStorage.getItem('loginAtivo');
+    if (!logado) {
+        window.location.href = 'login.html';
+    } else {
+        // Coloca o nome de quem logou no lugar do texto "Técnico"
+        const txtNome = document.querySelector('.user-info strong');
+        if (txtNome) txtNome.innerText = logado;
+    }
+
+    // Configura o botão Sair
+    const btnSair = document.querySelector('.user-info button');
+    if (btnSair) {
+        btnSair.onclick = function() {
+            localStorage.removeItem('loginAtivo');
+            window.location.href = 'index.html';
+        };
+    }
+</script>
+</body>
+</html>

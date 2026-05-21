@@ -1,0 +1,560 @@
+/* Paleta de Cores Terrosas */
+:root {
+    --bg-body: #f4f1ee;
+    --bg-card: #ffffff;
+    --primary: #a83f2a;    /* Terracota */
+    --secondary: #a76431;  /* Marrom Profundo */
+    --accent: #bda27e;     /* Bege Ouro */
+    --text-dark: #2d241e;
+    --text-light: #6d5d51;
+    --success: #5a6344;    /* Verde Musgo */
+    --border: #e0d7cf;
+    --vo: #bb9161;
+    --vi: #ffff;
+    --ver:#596D4B; /* Verde Militar */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    transition: all 0.5s ease;
+}
+
+/* --- retangulo do lado --- */
+.tech-gpu-header {
+    border-left: 10px solid var(--primary);
+    padding-left: 25px;
+    text-align: left;
+
+}
+/*---Loja oficial---*/
+.tech-tag {
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--primary);
+    font-weight: 800;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.tech-line {
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary);
+    margin-top: 10px;
+}
+
+.highlight {
+    color: var(--primary);
+}
+
+/* --- caixa do login--- */
+#login-container {
+    width: 100%;
+    max-width: 420px;
+    padding: 20px;
+    
+}
+
+.login-box {
+    background: var(--bg-card);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(74, 55, 40, 0.08);
+    border: 1px solid var(--border);
+    text-align: center;
+        animation: login-bx 6s linear infinite; 
+}
+@keyframes login-bx {
+    0% {
+        background-color: #9e6e6e; 
+    }
+    33% {
+        background-color: #87aa74; 
+    }
+    66% {
+        background-color: #cac27a; 
+    }
+    100% {
+        background-color: #9e6e6e; 
+    }
+}
+
+.login-box h1 {
+    font-size: 30px;
+    color: var(--vi);
+    margin-bottom: 10px;
+    
+    /* CORREÇÃO: Ajustado para o padrão correto do CSS (valores de 100 a 900) */
+    font-weight: 800; 
+
+    /* REMOVA O -webkit-text-stroke antigo e substitua por este text-shadow: */
+    /* Ele cria micro-sombras pretas em todas as diagonais, gerando um contorno perfeito por fora */
+    text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+}
+
+.login-box p {
+    color: var(--vi);
+    font-size: 18px;
+    margin-bottom: 30px;
+        text-shadow: 
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #faf9f8;
+    color: var(--text-dark);
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(140, 70, 46, 0.1);
+    
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    color: #ffffff;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Transição lisa para o efeito de empurrão */
+    
+    /* COMANDO DA ANIMAÇÃO: */
+    /* Chama a animação 'tonsTerrosos', dura 6 segundos, é infinita e suave (linear) */
+    animation: tonsTerrosos 6s linear infinite; 
+}
+
+.btn-primary:hover {
+.btn-primary:hover {
+    transform: translateY(-1px);
+    
+    /* COMANDO PARA DAR O BRILHO: */
+    filter: brightness(1.35); /* Aumenta a iluminação da cor atual */
+    
+    /* OPCIONAL (Aura de luz em tons terrosos em volta do botão): */
+    box-shadow: 0 0 15px rgba(140, 70, 46, 0.6); 
+    
+    /* Pausa a animação para fixar o brilho na cor que o rato travou */
+    animation-play-state: paused; 
+}
+}
+
+/* AS REGRAS QUE DEFINEM OS TONS TERROSOS DA MUDANÇA: */
+@keyframes tonsTerrosos {
+    0% {
+        background-color: #8c462e; /* Seu Terracota original (var(--primary)) */
+    }
+    33% {
+        background-color: #7c561e; /* Um terracota um pouco mais escuro */
+    }
+    66% {
+        background-color: #5f3718; /* Seu Marrom Profundo original (var(--secondary)) */
+    }
+    100% {
+        background-color: #8c462e; /* Volta para o Terracota para o ciclo fechar sem dar trancos */
+    }
+}
+
+.btn-voltar {
+    width: center;
+    padding: 8px;
+    border-radius: 8px;
+    justify-content:center;
+    background: var(--primary);
+    display: block;
+    margin-top: 10px;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border: 1px solid black;
+}
+
+.btn-voltar:hover {
+    background: var(--vo);
+    transform: translateY(-2px);
+}
+
+/* --- DASHBOARD PRINCIPAL --- */
+#dashboard {
+    width: 100%;
+    max-width: 1200px;
+    background: var(--bg-card);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(74, 55, 40, 0.05);
+    border: 1px solid var(--border);
+    margin: 20px;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 25px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-info span {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+.user-info strong {
+    color: var(--secondary);
+}
+
+.user-info button {
+    padding: 8px 16px;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text-light);
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.user-info button:hover {
+    background: #ffebee;
+    color: #c62828;
+    border-color: #ffcdd2;
+}
+
+/* Menu de Navegação por Botões Interativos */
+.menu-botoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.card-btn {
+    background: #faf9f8;
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.01);
+}
+
+.card-btn:hover {
+    background: #ffffff;
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(140, 70, 46, 0.08);
+}
+
+.card-btn.active {
+    background: var(--primary);
+    color: #ffffff;
+    border-color: var(--primary);
+    box-shadow: 0 8px 16px rgba(140, 70, 46, 0.15);
+}
+
+/* Seções de Conteúdo Interno */
+.os-container {
+    background: #faf9f8;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 30px;
+}
+
+.os-container h3 {
+    font-size: 18px;
+    color: var(--secondary);
+    margin-bottom: 25px;
+    font-weight: 800;
+}
+
+.os-form label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 8px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.btn-success {
+    background: var(--success);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-success:hover {
+    filter: brightness(1.1);
+}
+
+/* --- TABELAS --- */
+.tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.tech-table th {
+    background: var(--secondary);
+    color: white;
+    text-align: left;
+    padding: 14px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.tech-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-dark);
+    font-size: 14px;
+}
+
+.tech-table tr:last-child td {
+    border-bottom: none;
+}
+
+.tech-table tr:hover td {
+    background: #faf9f8;
+}
+
+/* --- ÁREA DE PESQUISA CLIENTES --- */
+.search-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.search-container input {
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.btn-new {
+    width: auto;
+    padding: 13px 25px;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+.btn-new:hover {
+    background: var(--secondary);
+}
+
+.status-tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status-tag.ativo { background: #e8f5e9; color: #2e7d32; }
+.status-tag.inativo { background: #ffebee; color: #c62828; }
+
+
+/* ==========================================================================
+   CORREÇÃO DEFINITIVA DO CATÁLOGO (CONFORME O PRINT)
+   ========================================================================== */
+
+/* ATENÇÃO: Mudamos para .grid-produtos para bater exatamente com o seu HTML */
+.grid-produtos {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* Força exatamente 3 colunas lado a lado */
+    gap: 20px !important; /* Espaçamento idêntico ao do seu print */
+    padding: 10px 0;
+    width: 100%;
+}
+
+/* Controla o design individual dos cartões de produtos */
+.produto-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os textos e botões */
+    justify-content: space-between;
+    text-align: center;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.produto-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+}
+
+/* Enquadra a área da foto de cada GPU */
+.produto-img {
+    width: 100%;
+    height: 180px;
+    background: #eae4de; /* Cor de fundo levemente terrosa para destacar o container enquanto não há foto */
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+}
+
+.produto-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ajusta a imagem sem distorcer nem esticar */
+    width: auto;
+    height: auto;
+}
+
+/* Estilização dos títulos e preços para seguir o padrão visual */
+.produto-card h3 {
+    font-size: 1.3rem;
+    color: var(--secondary);
+    margin-bottom: 8px;
+    font-weight: 800;
+}
+
+.preco {
+    font-size: 1.5rem;
+    color: var(--secondary);
+    font-weight: 800;
+    margin: 15px 0;
+    display: block;
+}
+
+.btn-comprar {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 700;
+    width: 100%;
+    transition: background 0.2s;
+}
+
+.btn-comprar:hover {
+    background: var(--secondary);
+}
+
+/* --- CARRINHO SIDEBAR --- */
+.cart-sidebar {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    background: var(--bg-card);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    z-index: 1500;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+/* --- ALINHAMENTO DO TOPO DO CARRINHO --- */
+.cart-header {
+    display: flex;
+    justify-content: space-between; /* Empurra o título para a esquerda e o X para a direita */
+    align-items: center;            /* Alinha os dois verticalmente ao centro */
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+/* Estilo opcional para deixar o botão X mais bonito e limpo no canto */
+.cart-header button {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.2s;
+}
+
+.cart-header button:hover {
+    color: var(--secondary);
+}

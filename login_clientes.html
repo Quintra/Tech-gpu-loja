@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech GPU - Login</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section id="login-container">
+        <div class="login-box">
+            <div class="tech-gpu-header" style="border: none; text-align: center; padding: 0; margin-bottom: 20px;">
+                <span class="tech-tag">Bem vindo</span>
+                <h2 style="font-size: 2.2rem;">TECH <span class="highlight">GPU</span></h2>
+            </div>
+            
+            <h1>Acesso do Cliente</h1>
+            <p>Insira suas credenciais para continuar</p>
+        
+            <form action="catalogo.html">
+                <input type="text" placeholder="Usuário" required>
+                <input type="password" placeholder="Senha" required>
+                <button type="submit" class="btn-primary">Entrar no Sistema</button>
+
+            </form>
+            
+             <a href="cadastrar.html" class="btn-voltar">Cadastrar novo usuário</a>
+
+             <a class="btn-voltar" onclick="window.location.href='index.html'">Voltar</a>
+        </div>
+        <script>
+    document.querySelector('form').onsubmit = function(e) {
+        e.preventDefault();
+        const user = this.querySelectorAll('input')[0].value;
+        
+        // Procura se o cliente já existe no sistema
+        const clientes = JSON.parse(localStorage.getItem('techGpuClientes')) || [];
+        const valid = clientes.find(c => c.nome === user || c.cpf === user);
+
+        if(valid) {
+            // Se existir, faz login com o nome guardado
+            localStorage.setItem('clienteLogado', valid.nome);
+            window.location.href = 'catalogo.html';
+        } else {
+            // Se não existir, permite o login direto com o nome digitado para facilitar o teste
+            localStorage.setItem('clienteLogado', user);
+            window.location.href = 'catalogo.html';
+        }
+    };
+    </script>
+    </section>
+</body>
+</html>

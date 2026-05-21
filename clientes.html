@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Tech GPU - Clientes</title>
+</head>
+<body>
+    <main id="dashboard">
+        <header class="main-header">
+            <div class="tech-gpu-header">
+                <span class="tech-tag">BASE DE DADOS</span>
+                <h2>CLIENTES <span class="highlight">CADASTRADOS</span></h2>
+            </div>
+                            <br>
+                    <button onclick="window.location.href='index.html'"> Sair </button>
+        </header>
+
+        <nav class="menu-botoes">
+            <a href="clientes.html" class="card-btn active">🔍 Pesquisar Clientes</a>
+            <a href="funcionarios.html" class="card-btn">👥 Funcionários</a>
+            <a href="dashboard.html" class="card-btn">🛠️ Nova Ordem de Serviço</a>
+            <a href="relatorios.html" class="card-btn">📊 Relatórios</a>
+        </nav>
+        <section class="os-container">
+        <div class="search-area">
+        <input type="text" placeholder="Digite o nome ou CPF para buscar...">
+        <button onclick="window.location.href='cadastrar_cliente.html'"class="btn-add"> + Novo Cliente</button>
+    </div>
+    </section>
+
+        <section class="os-container">
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF / CNPJ</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>João Silva</td><td>123.456.789-00</td><td>Ativo</td><td><button class="btn-primary">Ver</button></td></tr>
+                    <tr><td>Empresa X</td><td>00.111.222/0001-00</td><td>Inativo</td><td><button class="btn-primary">Ver</button></td></tr>
+                </tbody>
+            </table>
+        </section>
+        <tbody id="tabela-corpo"></tbody>
+
+<script>
+    const clientes = JSON.parse(localStorage.getItem('techGpuClientes')) || [];
+    const corpo = document.getElementById('tabela-corpo');
+
+    if(clientes.length === 0) {
+        corpo.innerHTML = "<tr><td colspan='4'>Nenhum cliente cadastrado.</td></tr>";
+    } else {
+        corpo.innerHTML = clientes.map(c => `
+            <tr>
+                <td>${c.nome}</td>
+                <td>${c.cpf}</td>
+                <td><span class="status-tag ativo">Ativo</span></td>
+                <td><button class="btn-primary" onclick="alert('E-mail: ${c.email}')">Ver</button></td>
+            </tr>
+        `).join('');
+    }
+</script>
+    </main>
+
+</body>
+
+</html>
