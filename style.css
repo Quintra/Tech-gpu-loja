@@ -29,6 +29,7 @@ body {
     align-items: center;
     min-height: 100vh;
     transition: all 0.5s ease;
+    padding: 12px; /* Evita que o painel quebre e cole nas bordas do ecrã */
 }
 
 /* --- retangulo do lado --- */
@@ -217,7 +218,7 @@ input:focus, textarea:focus, select:focus {
     padding: 40px;
     box-shadow: 0 20px 50px rgba(74, 55, 40, 0.05);
     border: 1px solid var(--border);
-    margin: 20px;
+    margin: 10px auto; /* Centraliza perfeitamente o bloco e impede que ele transborde */
 }
 
 .main-header {
@@ -429,14 +430,15 @@ input:focus, textarea:focus, select:focus {
 
 
 /* ==========================================================================
-   CORREÇÃO DEFINITIVA DO CATÁLOGO (CONFORME O PRINT)
+   CATÁLOGO COMPLETO E RESPONSIVO (PERFEITO NO PC E NO CELULAR)
    ========================================================================== */
 
-/* ATENÇÃO: Mudamos para .grid-produtos para bater exatamente com o seu HTML */
 .grid-produtos {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important; /* Força exatamente 3 colunas lado a lado */
-    gap: 20px !important; /* Espaçamento idêntico ao do seu print */
+    /* Usa auto-fit com minmax para criar 3 colunas no computador e 
+       jogar os cards para baixo automaticamente no celular */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important; 
+    gap: 20px !important; 
     padding: 10px 0;
     width: 100%;
 }
@@ -453,6 +455,7 @@ input:focus, textarea:focus, select:focus {
     justify-content: space-between;
     text-align: center;
     transition: transform 0.3s ease, border-color 0.3s ease;
+    width: 100%;
 }
 
 .produto-card:hover {
@@ -464,7 +467,7 @@ input:focus, textarea:focus, select:focus {
 .produto-img {
     width: 100%;
     height: 180px;
-    background: #eae4de; /* Cor de fundo levemente terrosa para destacar o container enquanto não há foto */
+    background: #eae4de; 
     border-radius: 12px;
     margin-bottom: 20px;
     overflow: hidden;
@@ -477,12 +480,12 @@ input:focus, textarea:focus, select:focus {
 .produto-img img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Ajusta a imagem sem distorcer nem esticar */
+    object-fit: contain; 
     width: auto;
     height: auto;
 }
 
-/* Estilização dos títulos e preços para seguir o padrão visual */
+/* Estilização dos títulos e preços */
 .produto-card h3 {
     font-size: 1.3rem;
     color: var(--secondary);
@@ -533,17 +536,17 @@ input:focus, textarea:focus, select:focus {
 .cart-sidebar.open {
     right: 0;
 }
+
 /* --- ALINHAMENTO DO TOPO DO CARRINHO --- */
 .cart-header {
     display: flex;
-    justify-content: space-between; /* Empurra o título para a esquerda e o X para a direita */
-    align-items: center;            /* Alinha os dois verticalmente ao centro */
+    justify-content: space-between; /* Mantém o título na esquerda e o X na direita */
+    align-items: center;            
     border-bottom: 1px solid var(--border);
     padding-bottom: 15px;
     margin-bottom: 15px;
 }
 
-/* Estilo opcional para deixar o botão X mais bonito e limpo no canto */
 .cart-header button {
     background: none;
     border: none;
@@ -557,4 +560,97 @@ input:focus, textarea:focus, select:focus {
 
 .cart-header button:hover {
     color: var(--secondary);
+}
+
+/* --- DETECTOR DE CELULAR / AJUSTES ESPECÍFICOS --- */
+@media (max-width: 768px) {
+    /* Faz o catálogo ficar em 1 coluna perfeita no celular */
+    .grid-produtos {
+        grid-template-columns: 1fr !important;
+    }
+    
+    /* Organiza os botões do menu inicial para não esmagarem lado a lado */
+    .menu-botoes {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+
+    /* Reduz um pouco o tamanho da caixa lateral para caber na tela do celular */
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+}
+
+/* ==========================================================================
+   MELHORIA DO MODAL DE CHECKOUT PARA CELULAR
+   ========================================================================== */
+
+/* Ajustes base na estrutura da modal para garantir fluidez */
+.modal-content {
+    background-color: var(--bg-body) !important;
+    padding: 25px !important;
+    max-height: 92vh !important;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- REGRAS PARA CELULAR (Telas de até 768px) --- */
+@media (max-width: 768px) {
+    /* Desfaz as duas colunas rígidas e empilha o conteúdo em uma coluna só */
+    .checkout-grid {
+        grid-template-columns: 1fr !important; 
+        gap: 25px !important;
+        margin-top: 15px !important;
+    }
+
+    /* Ajusta a janela branca interna para não estourar a tela */
+    .modal-content {
+        width: 95% !important;
+        padding: 20px 15px !important;
+        border-radius: 16px !important;
+    }
+
+    /* Dá um ajuste nos botões de Cartão e Pix para preencherem o espaço */
+    .modal-content style div button {
+        padding: 12px 8px !important;
+        font-size: 14px !important;
+    }
+
+    /* Garante que o bloco do resumo da compra se ajuste na largura total */
+    .checkout-grid > div:last-child {
+        padding: 15px !important;
+        margin-top: 5px;
+    }
+}
+
+/* ==========================================================================
+   REGRAS EXCLUSIVAS PARA TELEMÓVEL / CELULAR (Media Queries)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Faz o painel principal respirar melhor em ecrãs pequenos */
+    #dashboard {
+        padding: 20px 15px !important;
+        margin: 5px auto !important;
+        border-radius: 16px;
+    }
+
+    /* Coloca as informações do topo em linha vertical para não amassar */
+    .main-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    /* O SEGREDO DO INDEX: Força os botões grandes a ficarem um debaixo do outro */
+    .menu-botoes {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    /* Garante que os cartões usem 100% da largura disponível */
+    .card-btn {
+        width: 100% !important;
+        padding: 20px 15px !important;
+    }
 }
