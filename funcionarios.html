@@ -12,8 +12,8 @@
                 <span class="tech-tag">GESTÃO INTERNA</span>
                 <h2>NOSSA <span class="highlight">EQUIPE</span></h2>
             </div>
-                            <br>
-                    <button onclick="window.location.href='index.html'"> Sair </button>
+            <br>
+            <button onclick="window.location.href='index.html'"> Sair </button>
         </header>
 
         <nav class="menu-botoes">
@@ -25,10 +25,47 @@
 
         <section class="os-container">
             <div class="form-row">
-                <div class="card-btn"><strong>Anderson</strong><br>Técnico em Eletrônica</div>
-                <div class="card-btn"><strong>Erick</strong><br>Especialista em BGA</div>
+                <div class="card-btn" onclick="mostrarFoto('Anderson', 'img/anderson.png')" style="cursor: pointer; transition: transform 0.2s;">
+                    <strong>Anderson</strong><br>Técnico em Eletrônica
+                </div>
+                <div class="card-btn" onclick="mostrarFoto('Erick', 'img/erick.png')" style="cursor: pointer; transition: transform 0.2s;">
+                    <strong>Erick</strong><br>Especialista em BGA
+                </div>
+            </div>
+        </section>
+
+        <section class="os-container" id="container-foto" style="display: none; margin-top: 20px;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 25px; border-radius: 20px; text-align: center; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                
+                <button onclick="fecharFoto()" style="position: absolute; right: 20px; top: 15px; background: none; border: none; font-size: 22px; cursor: pointer; color: var(--primary); font-weight: bold;">✕</button>
+                
+                <h3 id="nome-tecnico" style="color: var(--primary); margin-bottom: 15px; font-size: 1.4rem;"></h3>
+                
+                <div style="display: inline-block; border-radius: 12px; overflow: hidden; border: 3px solid var(--accent); background: #eee; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    <img id="foto-tecnico" src="" alt="Carregando foto..." style="display: block; max-width: 100%; width: 260px; height: 260px; object-fit: cover;">
+                </div>
             </div>
         </section>
     </main>
+
+    <script>
+        function mostrarFoto(nome, arquivoImagem) {
+            // Altera o título e a origem (src) da imagem dinamicamente
+            document.getElementById('nome-tecnico').innerText = `Perfil Profissional: ${nome}`;
+            document.getElementById('foto-tecnico').src = arquivoImagem;
+            
+            // Exibe o bloco de fotos na tela
+            const painelFoto = document.getElementById('container-foto');
+            painelFoto.style.display = 'block';
+            
+            // Faz um efeito de scroll suave para focar na foto exibida
+            painelFoto.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function fecharFoto() {
+            // Oculta novamente o painel
+            document.getElementById('container-foto').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

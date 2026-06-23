@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech GPU - Login</title>
     <link rel="stylesheet" href="style.css">
-
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -20,37 +19,77 @@
             <h1>Acesso do Cliente</h1>
             <p>Insira suas credenciais para continuar</p>
         
-            <form action="catalogo.html">
-                <input type="text" placeholder="Usuário" required>
+            <form id="login-form-cliente">
+                <input type="text" placeholder="Usuário ou CPF" required>
                 <input type="password" placeholder="Senha" required>
                 <button type="submit" class="btn-primary">Entrar no Sistema</button>
-
             </form>
             
-             <a href="cadastrar.html" class="btn-voltar">Cadastrar novo usuário</a>
-
-             <a class="btn-voltar" onclick="window.location.href='index.html'">Voltar</a>
+            <a href="cadastrar.html" class="btn-voltar">Cadastrar novo usuário</a>
+            <a class="btn-voltar" onclick="window.location.href='index.html'">Voltar</a>
         </div>
-        <script>
-    document.querySelector('form').onsubmit = function(e) {
-        e.preventDefault();
-        const user = this.querySelectorAll('input')[0].value;
-        
-        // Procura se o cliente já existe no sistema
-        const clientes = JSON.parse(localStorage.getItem('techGpuClientes')) || [];
-        const valid = clientes.find(c => c.nome === user || c.cpf === user);
 
-        if(valid) {
-            // Se existir, faz login com o nome guardado
-            localStorage.setItem('clienteLogado', valid.nome);
-            window.location.href = 'catalogo.html';
-        } else {
-            // Se não existir, permite o login direto com o nome digitado para facilitar o teste
-            localStorage.setItem('clienteLogado', user);
-            window.location.href = 'catalogo.html';
-        }
-    };
-    </script>
+<script>
+    // Seleciona o formulário de forma resiliente (com ou sem ID no HTML)
+    const formulario = document.getElementById('login-form-cliente') || document.querySelector('form');
+
+    if (formulario) {
+        formulario.onsubmit = function(e) {
+            e.preventDefault();
+            
+            const inputs = this.querySelectorAll('input');
+            const userIn = inputs[0].value.trim().toLowerCase();
+            const passIn = inputs[1].value.trim();
+            
+            // Uniâo das tabelas para garantir compatibilidade com cadastros antigos
+            const clientes = JSON.parse(localStorage.getItem('techGpuClientes')) || [];
+            const equipe = JSON.parse(localStorage.getItem('techGpuEquipe')) || [];
+            const todosUsuarios = [...clientes, ...equipe];
+            
+            // Procura o usuário por Nome, Usuário ou CPF
+            const usuarioValido = todosUsuarios.find(u => {
+                const nomeBate = (u.nome && u.nome.trim().toLowerCase() === userIn) || 
+                                 (u.user && u.user.trim().toLowerCase() === userIn);
+                const cpfBate = u.cpf && u.cpf.replace(/\D/g, '') === userIn.replace(/\D/g, '');
+                
+                return nomeBate || cpfBate;
+            });
+
+            if (usuarioValido) {
+                // Captura a senha independente se foi salva como 'senha' ou 'pass'
+                const senhaSalva = usuarioValido.senha || usuarioValido.pass;
+                
+                if (senhaSalva) {
+                    // Se ele possui uma senha definida, valida ela estritamente
+                    if (senhaSalva === passIn) {
+                        fazerLogin(usuarioValido);
+                        return;
+                    }
+                } else {
+                    // CASO SEJA UM CLIENTE CADASTRADO PELO CRM INTERNO (Sem senha no objeto):
+                    // Permite a entrada usando o próprio CPF como senha ou o padrão "123"
+                    const cpfComoSenha = usuarioValido.cpf ? usuarioValido.cpf.trim() : null;
+                    if (passIn === "123" || (cpfComoSenha && passIn === cpfComoSenha)) {
+                        fazerLogin(usuarioValido);
+                        return;
+                    }
+                }
+            }
+            
+            // Se falhar em todas as regras acima
+            alert("Usuário, CPF ou senha incorretos!");
+            inputs[0].value = '';
+            inputs[1].value = '';
+        };
+    }
+
+    // Função auxiliar para efetivar o login e redirecionar
+    function fazerLogin(usuario) {
+        const nomeExibicao = usuario.nome || usuario.user || "Cliente";
+        localStorage.setItem('clienteLogado', nomeExibicao);
+        window.location.href = 'catalogo.html';
+    }
+</script>
     </section>
 </body>
 </html>

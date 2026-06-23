@@ -80,16 +80,16 @@ body {
 }
 @keyframes login-bx {
     0% {
-        background-color: #9e6e6e; 
+        background-color: #bda27e; 
     }
     33% {
-        background-color: #87aa74; 
+        background-color: #b39977; 
     }
     66% {
-        background-color: #cac27a; 
+        background-color: #806b50; 
     }
     100% {
-        background-color: #9e6e6e; 
+        background-color: #bda27e; 
     }
 }
 
@@ -154,6 +154,7 @@ input:focus, textarea:focus, select:focus {
     transition: transform 0.3s ease; /* Transição lisa para o efeito de empurrão */
     
     /* COMANDO DA ANIMAÇÃO: */
+    
     /* Chama a animação 'tonsTerrosos', dura 6 segundos, é infinita e suave (linear) */
     animation: tonsTerrosos 6s linear infinite; 
 }
@@ -176,16 +177,16 @@ input:focus, textarea:focus, select:focus {
 /* AS REGRAS QUE DEFINEM OS TONS TERROSOS DA MUDANÇA: */
 @keyframes tonsTerrosos {
     0% {
-        background-color: #8c462e; /* Seu Terracota original (var(--primary)) */
+        background-color: #8c462e; 
     }
     33% {
-        background-color: #7c561e; /* Um terracota um pouco mais escuro */
+        background-color: #7c561e; 
     }
     66% {
-        background-color: #5f3718; /* Seu Marrom Profundo original (var(--secondary)) */
+        background-color: #5f3718; 
     }
     100% {
-        background-color: #8c462e; /* Volta para o Terracota para o ciclo fechar sem dar trancos */
+        background-color: #8c462e; 
     }
 }
 
@@ -210,6 +211,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* --- DASHBOARD PRINCIPAL --- */
+
 #dashboard {
     width: 100%;
     max-width: 1200px;
@@ -430,7 +432,7 @@ input:focus, textarea:focus, select:focus {
 
 
 /* ==========================================================================
-   CATÁLOGO COMPLETO E RESPONSIVO (PERFEITO NO PC E NO CELULAR)
+   
    ========================================================================== */
 
 .grid-produtos {
@@ -625,7 +627,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ==========================================================================
-   REGRAS EXCLUSIVAS PARA TELEMÓVEL / CELULAR (Media Queries)
+   REGRAS PARA CELULAR 
    ========================================================================== */
 @media (max-width: 768px) {
     /* Faz o painel principal respirar melhor em ecrãs pequenos */
