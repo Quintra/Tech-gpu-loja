@@ -18,10 +18,10 @@
     </div>
 
     <div class="user-info">
-        <span>Bem-vindo, <strong>Técnico</strong></span>
-        <button onclick="window.location.href='index.html'">Sair</button>
+        <span>Bem-vindo, <strong id="nome-usuario-topo">Técnico</strong></span>
+        <button id="btn-sair-topo" style="background: var(--border); color: var(--text-dark); border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.2s;">Sair</button>
     </div>
-    </header>
+</header>
 
 
 
@@ -63,24 +63,26 @@
     </main>
 
     <script>
-    // Se o usuário tentar acessar direto sem logar, joga de volta para o login
-    const logado = localStorage.getItem('loginAtivo');
-    if (!logado) {
-        window.location.href = 'login.html';
-    } else {
-        // Coloca o nome de quem logou no lugar do texto "Técnico"
-        const txtNome = document.querySelector('.user-info strong');
-        if (txtNome) txtNome.innerText = logado;
-    }
+// Controle de Sessão e Identificação Dinâmica da Equipe
+    (function() {
+        const logado = localStorage.getItem('loginAtivo');
+        const txtUsuario = document.getElementById('nome-usuario-topo');
+        const btnSair = document.getElementById('btn-sair-topo');
 
-    // Configura o botão Sair
-    const btnSair = document.querySelector('.user-info button');
-    if (btnSair) {
-        btnSair.onclick = function() {
-            localStorage.removeItem('loginAtivo');
-            window.location.href = 'index.html';
-        };
-    }
+        if (!logado) {
+            window.location.href = 'login.html';
+            return;
+        }
+
+        if (txtUsuario) txtUsuario.innerText = logado;
+
+        if (btnSair) {
+            btnSair.onclick = function() {
+                localStorage.removeItem('loginAtivo');
+                window.location.href = 'index.html';
+            };
+        }
+    })();
 </script>
 </body>
 </html>

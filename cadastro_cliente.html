@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Tech GPU - Cadastro de Cliente</title>
+</head>
+<body>
+    <section id="login-container">
+        <div class="login-box">
+            <h1>Cadastro</h1>
+            <p></p>
+            <form id="form-equipe">
+                <input type="text" id="user-equipe" placeholder="Nome de Usuário" required>
+                <input type="password" id="pass-equipe" placeholder="Senha" required>
+                <button type="submit" class="btn-primary">Cadastrar</button>
+            </form>
+            <a href="login_clientes.html" class="btn-voltar" 
+                style="
+                display: block;
+                margin-top: 10px;
+                padding: 13px;
+                font-size: 15px;
+                "   
+                >Voltar para Login</a>
+        </div>
+    </section>
+
+<script>
+    document.querySelector('form').onsubmit = function(e) {
+        e.preventDefault();
+        const inputs = this.querySelectorAll('input');
+        const user = inputs[0].value;
+        const pass = inputs[1].value;
+
+        let equipe = JSON.parse(localStorage.getItem('techGpuEquipe')) || [];
+        equipe.push({ user: user, pass: pass });
+        localStorage.setItem('techGpuEquipe', JSON.stringify(equipe));
+
+        alert("Usuário cadastrado com sucesso!");
+        window.location.href = 'login_clientes.html';
+    };
+</script>
+</body>
+</html>

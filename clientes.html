@@ -7,14 +7,18 @@
 </head>
 <body>
     <main id="dashboard">
-        <header class="main-header">
-            <div class="tech-gpu-header">
-                <span class="tech-tag">BASE DE DADOS</span>
-                <h2>CLIENTES <span class="highlight">CADASTRADOS</span></h2>
-            </div>
-                            <br>
-                    <button onclick="window.location.href='index.html'"> Sair </button>
-        </header>
+<header class="main-header">
+    <div class="tech-gpu-header">
+        <span class="tech-tag">BASE DE DADOS</span>
+        <h2>CLIENTES <span class="highlight">CADASTRADOS</span></h2>
+        <div class="tech-line"></div>
+    </div>
+
+    <div class="user-info">
+        <span>Bem-vindo, <strong id="nome-usuario-topo">Funcionário</strong></span>
+        <button id="btn-sair-topo" style="background: var(--border); color: var(--text-dark); border: none; padding: 8px 15px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.2s;">Sair</button>
+    </div>
+</header>
 
         <nav class="menu-botoes">
             <a href="clientes.html" class="card-btn active">🔍 Pesquisar Clientes</a>
@@ -25,7 +29,7 @@
         <section class="os-container">
         <div class="search-area">
         <input type="text" placeholder="Digite o nome ou CPF para buscar...">
-        <button onclick="window.location.href='cadastrar_cliente.html'"class="btn-add"> + Novo Cliente</button>
+        <button onclick="window.location.href='cadastro_formulario.html'"class="btn-add"> + Novo Cliente</button>
     </div>
     </section>
 
@@ -63,6 +67,26 @@
             </tr>
         `).join('');
     }
+</script>
+<script>
+    (function() {
+        const logado = localStorage.getItem('loginAtivo');
+        const txtUsuario = document.getElementById('nome-usuario-topo');
+        const btnSair = document.getElementById('btn-sair-topo');
+
+        if (!logado) {
+            window.location.href = 'login.html';
+            return;
+        }
+        if (txtUsuario) txtUsuario.innerText = logado;
+
+        if (btnSair) {
+            btnSair.onclick = function() {
+                localStorage.removeItem('loginAtivo');
+                window.location.href = 'index.html';
+            };
+        }
+    })();
 </script>
     </main>
 

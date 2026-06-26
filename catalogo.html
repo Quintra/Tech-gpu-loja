@@ -67,17 +67,23 @@
 </head>
 <body style="align-items: flex-start; padding-top: 40px;">
 
-    <main id="dashboard">
-        <header class="main-header">
-            <div class="tech-gpu-header">
-                <span class="tech-tag">LOJA OFICIAL</span>
-                <h2>CATÁLOGO DE <span class="highlight">PLACAS</span></h2>
-            </div>
-            <div class="user-info">
-                <button class="cart-toggle" onclick="toggleCart()">🛒 Carrinho (<span id="cart-count">0</span>)</button>
-                <button onclick="window.location.href='index.html'">Voltar</button>
-            </div>
-        </header>
+<main id="dashboard">
+    <header class="main-header">
+        <div class="tech-gpu-header">
+            <span class="tech-tag">LOJA OFICIAL</span>
+            <h2>CATÁLOGO DE <span class="highlight">PLACAS</span></h2>
+            <div class="tech-line"></div>
+        </div>
+        
+        <div class="user-info" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <button class="cart-toggle" onclick="toggleCart()">🛒 Carrinho (<span id="cart-count">0</span>)</button>
+            
+            <span style="font-size: 14px; color: var(--text-light);">Olá, <strong id="nome-cliente-topo" style="color: var(--primary);">Visitante</strong></span>
+            <button id="btn-cliente-topo" style="padding: 8px 12px; font-size: 13px;">Entrar</button>
+            
+            <button onclick="window.location.href='index.html'">Voltar</button>
+        </div>
+    </header>
 
         <section class="os-container">
             <div class="grid-produtos">
@@ -260,7 +266,37 @@ function abrirCheckout() {
     renderResumo();
 }
     </script>
+<script>
+    // --- BIZU: IDENTIFICAÇÃO DO CLIENTE NO TOPO DA LOJA ---
+    (function() {
+        const clienteAtivo = localStorage.getItem('clienteLogado');
+        const txtCliente = document.getElementById('nome-cliente-topo');
+        const btnCliente = document.getElementById('btn-cliente-topo');
 
+        if (clienteAtivo) {
+            // Se o cliente estiver logado no sistema
+            if (txtCliente) txtCliente.innerText = clienteAtivo;
+            if (btnCliente) {
+                btnCliente.innerText = "Sair";
+                btnCliente.style.background = "var(--border)"; // Branco Gelo
+                btnCliente.onclick = function() {
+                    localStorage.removeItem('clienteLogado'); // Limpa o login
+                    window.location.reload(); // Recarrega para voltar a ser Visitante
+                };
+            }
+        } else {
+            // Se for apenas um visitante navegando
+            if (txtCliente) txtCliente.innerText = "Visitante";
+            if (btnCliente) {
+                btnCliente.innerText = "Entrar";
+                btnCliente.style.background = "var(--border)"; // Branco Gelo
+                btnCliente.onclick = function() {
+                    window.location.href = 'login_clientes.html'; // Vai logar
+                };
+            }
+        }
+    })();
+</script>
 
 
 </body>
